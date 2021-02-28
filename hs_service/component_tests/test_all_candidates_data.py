@@ -1,3 +1,7 @@
+import vcr
+
+
+@vcr.use_cassette('fixtures/cassettes/all_candidates.yaml')
 def test_get_all_candidates_returns_200_status_code(hs_test_helper):
     """
     1. Calls get to all candidates endpoint
@@ -7,6 +11,7 @@ def test_get_all_candidates_returns_200_status_code(hs_test_helper):
     assert r.status_code == 200, f"failed to get expected status_code expected 200, instead got: {r.status_code}"
 
 
+@vcr.use_cassette('fixtures/cassettes/all_candidates.yaml')
 def test_get_all_candidates_returns_expected_payload(hs_test_helper, hs_data_factory):
     """
     1. Calls GET to all candidates endpoint
@@ -18,6 +23,7 @@ def test_get_all_candidates_returns_expected_payload(hs_test_helper, hs_data_fac
         f"failed to get expected payload, expected: {expected_payload}, instead got: {r.text}"
 
 
+@vcr.use_cassette('fixtures/cassettes/all_candidates.yaml')
 def test_get_all_candidates_returns_the_expected_candidates_by_their_emails(hs_test_helper, hs_data_factory):
     """
     1. Calls GET to all candidates endpoint
